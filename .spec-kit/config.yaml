@@ -1,0 +1,25 @@
+# Spec-Kit Configuration for Hackathon II Phase II
+version: 1.0
+governance:
+  enabled: true
+  enforcement: strict
+  phases:
+    phase1-console:
+      features: ["task-crud"]
+    phase2-web:
+      features: ["task-crud", "authentication"]
+    phase3-chatbot:
+      features: ["task-crud", "authentication", "chatbot"]
+specifications:
+  root: ./specs
+  history: ./specs/history
+  features: ./specs/features
+  api: ./specs/api
+  database: ./specs/database
+  ui: ./specs/ui
+implementation:
+  backend: ./backend
+  frontend: ./frontend
+validation:
+  mandatory_spec_first: true
+  history_tracking: true

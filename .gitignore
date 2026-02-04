@@ -1,0 +1,140 @@
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.staging.local
+.env.testing
+.env.test
+.env.prod
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+env.bak/
+venv.bak/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp
+.pnp.js
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+.directory
+.Trashes
+*.nib
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Coverage
+.coverage
+coverage/
+!.coveragerc
+
+# Build outputs
+*.out
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Secrets and sensitive data
+secrets/
+credentials/
+private.key
+id_rsa
+id_dsa
+*.key
+*.pem
+*.crt
+*.cert
+*.p12
+
+# Local configuration
+config/local.json
+config/development.json
+config/staging.json
+config/production.json
+
+# Database
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Docker
+.dockerenv
+.dockerinit
+
+# Temporary files
+*.tmp
+*.temp
+.tmp/
+.temp/
+
+# Backend venv
+backend/venv/
+backend/__pycache__/
+
+# Frontend build artifacts
+frontend/build/
+frontend/dist/
+frontend/out/
+frontend/.next/
+frontend/node_modules/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+iTunes Music Library.xml
+Thumbs.db
+VolumeIcon.icns
+com.apple.timemachine.donotpresent
