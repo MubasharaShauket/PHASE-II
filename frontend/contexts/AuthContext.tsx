@@ -21,7 +21,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Check for existing session on mount
     const checkSession = async () => {
       try {
-        const session = await client.getSession();
+        const session = await client.session();
         if (session.data?.user) {
           setUser(session.data.user);
         } else {
@@ -43,15 +43,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const response = await client.signIn.email({
         email,
         password,
-        redirectTo: '/dashboard/tasks' // Use redirectTo instead of callbackURL
+        callbackURL: '/dashboard/tasks'
       });
 
       if (response.data?.user) {
         setUser(response.data.user);
-        // Store the token if needed for API calls
-        if (response.data.token) {
-          localStorage.setItem('token', response.data.token);
-        }
       } else if (response.error) {
         throw new Error(response.error.message || 'Sign in failed');
       }
@@ -63,9 +59,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signOut = async () => {
     try {
-      await client.signOut({
-        callbackURL: '/login' // Redirect to login after sign out
-      });
+      await client.signOut();
       setUser(null);
       localStorage.removeItem('token');
     } catch (error) {
@@ -75,19 +69,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signUp = async (email: string, password: string, confirmPassword: string) => {
+    // Extract name from email if not provided
+    const name = email.split('@')[0];
+
     try {
-      const response = await client.register({
+      const response = await client.signUp.email({
         email,
+        name,
         password,
-        confirmPassword
+        callbackURL: '/dashboard/tasks'
       });
 
       if (response.data?.user) {
         setUser(response.data.user);
-        // Store the token if needed for API calls
-        if (response.data.token) {
-          localStorage.setItem('token', response.data.token);
-        }
       } else if (response.error) {
         throw new Error(response.error.message || 'Registration failed');
       }
