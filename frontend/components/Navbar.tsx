@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
+import { HomeIcon, UserCircleIcon, ArrowRightStartOnRectangleIcon } from '@heroicons/react/24/outline';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -24,36 +25,42 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="bg-white shadow">
+    <nav className="bg-card-gradient shadow-lg border-b border-gray-200/50 sticky top-0 z-50 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex">
+        <div className="flex justify-between h-18 items-center">
+          <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center">
-              <Link href="/" className="text-xl font-semibold text-indigo-600">
-                Todo App
+              <Link href="/" className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-800">
+                <span className="flex items-center">
+                  <span className="mr-2">✓</span> Todo App
+                </span>
               </Link>
             </div>
-            <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+            <div className="hidden md:ml-10 md:flex md:space-x-8">
               <Link
                 href="/dashboard/tasks"
                 className={`${
                   pathname === '/dashboard/tasks'
-                    ? 'border-indigo-500 text-gray-900'
-                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
+                    ? 'text-primary-600 border-b-2 border-primary-500'
+                    : 'text-gray-600 hover:text-primary-600'
+                } inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-200`}
               >
+                <HomeIcon className="h-5 w-5 mr-1" />
                 My Tasks
               </Link>
             </div>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center space-x-4">
             {user ? (
               <>
-                <span className="text-sm text-gray-700 mr-4 hidden md:block">Welcome, {user.email}</span>
+                <span className="text-sm text-gray-700 hidden md:block">
+                  <span className="font-medium">Welcome,</span> {user.email.split('@')[0]}
+                </span>
                 <button
                   onClick={handleSignOut}
-                  className="ml-4 px-3 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700"
+                  className="btn-danger flex items-center"
                 >
+                  <ArrowRightStartOnRectangleIcon className="h-5 w-5 mr-1" />
                   Sign out
                 </button>
               </>
@@ -61,19 +68,23 @@ export default function Navbar() {
               <>
                 <Link
                   href="/login"
-                  className="ml-4 px-3 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
+                  className="btn-secondary flex items-center"
                 >
+                  <UserCircleIcon className="h-5 w-5 mr-1" />
                   Sign in
                 </Link>
                 <Link
                   href="/signup"
-                  className="ml-4 px-3 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700"
+                  className="btn-primary flex items-center"
                 >
-                  Sign up
+                  <span>Create Account</span>
                 </Link>
               </>
             ) : (
-              <span className="text-sm text-gray-700">Loading...</span>
+              <div className="flex items-center text-sm text-gray-700">
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-primary-500 mr-2"></div>
+                Loading...
+              </div>
             )}
           </div>
         </div>
