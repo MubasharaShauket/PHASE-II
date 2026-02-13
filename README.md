@@ -24,7 +24,7 @@ A secure, multi-user task management application built with a modern full-stack 
 - **Database**: PostgreSQL / MongoDB (depending on implementation)
 
 ### Additional Technologies
-- **Deployment**: Vercel (Frontend), Railway/Heroku (Backend)
+- **Deployment**: Vercel (Frontend), Self-hosted (Backend)
 - **Containerization**: Docker (optional)
 - **Environment Management**: dotenv
 - **Code Quality**: ESLint, Prettier
